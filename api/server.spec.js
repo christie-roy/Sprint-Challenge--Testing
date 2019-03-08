@@ -10,4 +10,14 @@ describe('server.js', () => {
                 expect(res.status).toBe(200);
             });
     });
+
+    describe('/games', () => {
+        it('should return 200', () => {
+            return request(server)
+                .get('/games')
+                .then(res => {
+                    expect(res.status).toBe(200);
+                });
+        });
+    })
 });
