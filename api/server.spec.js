@@ -11,7 +11,7 @@ describe('server.js', () => {
             });
     });
 
-    describe('/games', () => {
+    describe('GET /games', () => {
         // test for http status code
         it('should return 200', () => {
             return request(server)
@@ -33,4 +33,31 @@ describe('server.js', () => {
             expect(res.body).toEqual([]);
         });
     });
+
+    describe('POST /games', () => {
+        // test for status code
+        it('should return 201', () => {
+            const body = {
+                title: 'Joshua',
+                genre: 'Puzzle solving',
+                releaseYear: 1998,
+            };
+            return request(server)
+                .post('/games')
+                .then(res => {
+                    expect(res.status).toBe(201);
+                });
+        });
+
+        it('should return 422 for missing data', async () => {
+            const body = {
+                title: 'Nonexistent'
+            };
+            const res = await request(server).post('/games');
+            expect(res.status).toBe(422);
+
+        });
+
+        //
+    })
 });
