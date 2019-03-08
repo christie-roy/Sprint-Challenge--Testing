@@ -36,17 +36,14 @@ describe('server.js', () => {
 
     describe('POST /games', () => {
         // test for status code
-        it('should return 201', () => {
+        it('should return 201', async () => {
             const body = {
                 title: 'Joshua',
                 genre: 'Puzzle solving',
                 releaseYear: 1998,
             };
-            return request(server)
-                .post('/games')
-                .then(res => {
-                    expect(res.status).toBe(201);
-                });
+            const res = await request(server).post('/games').send(body);
+            expect(res.status).toBe(201);
         });
 
         it('should return 422 for missing data', async () => {
