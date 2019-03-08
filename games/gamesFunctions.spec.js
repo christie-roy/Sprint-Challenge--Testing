@@ -8,14 +8,14 @@ describe('games model', () => {
         });
 
         it('should insert games into the db', async () => {
-            await Games.insert({ title: 'Sonic'});
+            await Games.insert({ title: 'Sonic', genre: 'Retro', releaseYear: 1980});
 
             const games = await db('games');
             expect(games).toHaveLength(1);
         });
 
         it('should insert a single game into the db', async () => {
-            let game = await Games.insert({ title: 'Sonic'});
+            let game = await Games.insert({ title: 'Sonic', genre: 'Retro', releaseYear: 1980});
             expect(game.title).toBe('Sonic');
         })
     })

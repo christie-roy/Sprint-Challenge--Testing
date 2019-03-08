@@ -1,6 +1,6 @@
 const express = require('express');
 
-const games = require('');
+const games = require('../games/gamesFunctions');
 
 const server = express();
 
