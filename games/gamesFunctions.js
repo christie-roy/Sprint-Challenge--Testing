@@ -13,6 +13,6 @@ async function insert(game){
         .first();
 }
 
-function getAll() {
+async function getAll() {
     return db('games');
 }

@@ -12,6 +12,7 @@ describe('server.js', () => {
     });
 
     describe('/games', () => {
+        // test for http status code
         it('should return 200', () => {
             return request(server)
                 .get('/games')
@@ -19,5 +20,17 @@ describe('server.js', () => {
                     expect(res.status).toBe(200);
                 });
         });
-    })
+
+        // test for format of data
+        it('should return JSON', async () => {
+            const res = await request(server).get('/games');
+            expect(res.type).toBe('application/json');
+        });
+
+        // test for shape of res.body
+        it('should return array of games', async () => {
+            const res = await request(server).get('/games');
+            expect(res.body).toEqual([]);
+        });
+    });
 });
